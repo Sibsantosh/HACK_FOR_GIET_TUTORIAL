@@ -34,6 +34,7 @@ class MemeActivity : AppCompatActivity() {
             Glide.with(this).load(data?.url).into(memeImage)
             reloadButton.setOnClickListener {
                 recreate()
+
             }
 
         })
