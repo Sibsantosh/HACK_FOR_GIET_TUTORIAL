@@ -10,6 +10,4 @@ import retrofit2.http.POST
 interface MemeAPI {
     @GET("/gimme")
     suspend fun getMeme() : Response<memeData>
-    @POST("/login")
-    suspend fun login( @Body auth: Auth) : Response<memeData>
 }

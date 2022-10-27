@@ -2,6 +2,7 @@ package com.rexmo.hackforgiet
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.LiveData
@@ -19,6 +20,7 @@ class MemeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_meme)
         val titleText = findViewById<TextView>(R.id.titleText)
         val memeImage = findViewById<ImageView>(R.id.memeImage)
+        val reloadButton = findViewById<Button>(R.id.reloadBtn)
         val retService = Retrofit.getRetrofitInstance().create(MemeAPI::class.java)
         val response : LiveData<Response<memeData>> = liveData {
             val responseData = retService.getMeme()
@@ -30,8 +32,12 @@ class MemeActivity : AppCompatActivity() {
             val data = it.body()
             titleText.text = data?.title
             Glide.with(this).load(data?.url).into(memeImage)
+            reloadButton.setOnClickListener {
+                recreate()
+            }
 
         })
+
 
 
     }
